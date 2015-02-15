@@ -446,13 +446,11 @@
 <span id="404">404</span>
 <span id="405">405</span>
 <span id="406">406</span>
-<span id="407">407</span>
 </pre><pre class='rust '>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>crate_name</span> <span class='op'>=</span> <span class='string'>&quot;bytes&quot;</span>]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>unstable</span>]</span>
 
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>core</span>)]</span>
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>alloc</span>)]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>alloc</span>, <span class='ident'>core</span>, <span class='ident'>io</span>, <span class='ident'>unsafe_no_drop_flag</span>)]</span>
 
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>byte_buf</span>::{<span class='ident'>ByteBuf</span>, <span class='ident'>ROByteBuf</span>, <span class='ident'>MutByteBuf</span>};
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>byte_str</span>::{<span class='ident'>SeqByteStr</span>, <span class='ident'>SmallByteStr</span>, <span class='ident'>SmallByteStrBuf</span>};
