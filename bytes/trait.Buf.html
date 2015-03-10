@@ -43,7 +43,7 @@
     <section id='main' class="content trait">
 <h1 class='fqn'><span class='in-band'>Trait <a href='index.html'>bytes</a>::<wbr><a class='trait' href=''>Buf</a><wbr></span><span class='out-of-band'><span id='render-detail'>
             <a id="collapse-all" href="#">[-]</a>&nbsp;<a id="expand-all" href="#">[+]</a>
-        </span><a id='src-5208' href='../src/bytes/lib.rs.html#33-100'>[src]</a></span></h1>
+        </span><a id='src-5144' href='../src/bytes/lib.rs.html#33-100'>[src]</a></span></h1>
 <pre class='rust trait'>pub trait Buf {
     fn <a href='#tymethod.remaining' class='fnname'>remaining</a>(&amp;self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>;
     fn <a href='#tymethod.bytes' class='fnname'>bytes</a>&lt;'a&gt;(&amp;'a self) -&gt; <a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;'a [</a><a href='http://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a href='http://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>;
@@ -87,7 +87,7 @@ request (aka <code>dst.len()</code> &gt; self.remaining()<code>), then
     <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='../bytes/struct.ByteBuf.html' title='bytes::ByteBuf'>ByteBuf</a></code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='../bytes/struct.ROByteBuf.html' title='bytes::ROByteBuf'>ROByteBuf</a></code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='../bytes/struct.SmallByteStrBuf.html' title='bytes::SmallByteStrBuf'>SmallByteStrBuf</a></code></li>
-<li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'a&gt; <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='../bytes/struct.RingBufReader.html' title='bytes::RingBufReader'>RingBufReader</a>&lt;'a&gt;</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='../bytes/struct.RingBuf.html' title='bytes::RingBuf'>RingBuf</a></code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='../bytes/struct.RopeBuf.html' title='bytes::RopeBuf'>RopeBuf</a></code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'a&gt; <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='../bytes/struct.SliceBuf.html' title='bytes::SliceBuf'>SliceBuf</a>&lt;'a&gt;</code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='http://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> + 'static&gt;</code></li>
