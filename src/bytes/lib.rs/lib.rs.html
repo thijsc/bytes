@@ -618,7 +618,7 @@
                 <span class='kw'>let</span> <span class='ident'>src</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>bytes</span>();
                 <span class='ident'>cnt</span> <span class='op'>=</span> <span class='ident'>cmp</span>::<span class='ident'>min</span>(<span class='ident'>src</span>.<span class='ident'>len</span>(), <span class='ident'>len</span> <span class='op'>-</span> <span class='ident'>off</span>);
 
-                <span class='ident'>ptr</span>::<span class='ident'>copy_nonoverlapping_memory</span>(
+                <span class='ident'>ptr</span>::<span class='ident'>copy_nonoverlapping</span>(
                     <span class='ident'>dst</span>[<span class='ident'>off</span>..].<span class='ident'>as_mut_ptr</span>(), <span class='ident'>src</span>.<span class='ident'>as_ptr</span>(), <span class='ident'>cnt</span>);
 
                 <span class='ident'>off</span> <span class='op'>+=</span> <span class='ident'>src</span>.<span class='ident'>len</span>();
@@ -700,7 +700,7 @@
                 <span class='kw'>let</span> <span class='ident'>dst</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>mut_bytes</span>();
                 <span class='ident'>cnt</span> <span class='op'>=</span> <span class='ident'>cmp</span>::<span class='ident'>min</span>(<span class='ident'>dst</span>.<span class='ident'>len</span>(), <span class='ident'>len</span> <span class='op'>-</span> <span class='ident'>off</span>);
 
-                <span class='ident'>ptr</span>::<span class='ident'>copy_nonoverlapping_memory</span>(
+                <span class='ident'>ptr</span>::<span class='ident'>copy_nonoverlapping</span>(
                     <span class='ident'>dst</span>.<span class='ident'>as_mut_ptr</span>(), <span class='ident'>src</span>[<span class='ident'>off</span>..].<span class='ident'>as_ptr</span>(), <span class='ident'>cnt</span>);
 
                 <span class='ident'>off</span> <span class='op'>+=</span> <span class='ident'>cnt</span>;
