@@ -221,11 +221,9 @@
 <span id="179">179</span>
 <span id="180">180</span>
 <span id="181">181</span>
-<span id="182">182</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>super</span>::{<span class='ident'>Buf</span>, <span class='ident'>MutBuf</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::{<span class='ident'>cmp</span>, <span class='ident'>fmt</span>, <span class='ident'>mem</span>, <span class='ident'>ptr</span>, <span class='ident'>slice</span>};
-<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>num</span>::<span class='ident'>UnsignedInt</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>rt</span>::<span class='ident'>heap</span>;
 
 <span class='doccomment'>/// Buf backed by a continous chunk of memory. Maintains a read cursor and a</span>
@@ -252,7 +250,7 @@
         }
 
         <span class='comment'>// Round to the next power of 2 for better alignment</span>
-        <span class='ident'>capacity</span> <span class='op'>=</span> <span class='ident'>UnsignedInt</span>::<span class='ident'>next_power_of_two</span>(<span class='ident'>capacity</span>);
+        <span class='ident'>capacity</span> <span class='op'>=</span> <span class='ident'>capacity</span>.<span class='ident'>next_power_of_two</span>();
 
         <span class='comment'>// Allocate the memory</span>
         <span class='kw'>let</span> <span class='ident'>ptr</span> <span class='op'>=</span> <span class='kw'>unsafe</span> { <span class='ident'>heap</span>::<span class='ident'>allocate</span>(<span class='ident'>capacity</span>, <span class='ident'>mem</span>::<span class='ident'>min_align_of</span>::<span class='op'>&lt;</span><span class='ident'>u8</span><span class='op'>&gt;</span>()) };
