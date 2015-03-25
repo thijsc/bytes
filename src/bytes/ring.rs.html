@@ -221,6 +221,12 @@
 <span id="179">179</span>
 <span id="180">180</span>
 <span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>super</span>::{<span class='ident'>Buf</span>, <span class='ident'>MutBuf</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::{<span class='ident'>cmp</span>, <span class='ident'>fmt</span>, <span class='ident'>mem</span>, <span class='ident'>ptr</span>, <span class='ident'>slice</span>};
@@ -284,6 +290,9 @@
     }
 
     <span class='kw'>fn</span> <span class='ident'>advance_reader</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='kw-2'>mut</span> <span class='ident'>cnt</span>: <span class='ident'>usize</span>) {
+        <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>cap</span> <span class='op'>==</span> <span class='number'>0</span> {
+            <span class='kw'>return</span>;
+        }
         <span class='ident'>cnt</span> <span class='op'>=</span> <span class='ident'>cmp</span>::<span class='ident'>min</span>(<span class='ident'>cnt</span>, <span class='self'>self</span>.<span class='ident'>read_remaining</span>());
 
         <span class='self'>self</span>.<span class='ident'>pos</span> <span class='op'>+=</span> <span class='ident'>cnt</span>;
@@ -386,6 +395,9 @@
     }
 
     <span class='kw'>fn</span> <span class='ident'>mut_bytes</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> [<span class='ident'>u8</span>] {
+        <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>cap</span> <span class='op'>==</span> <span class='number'>0</span> {
+            <span class='kw'>return</span> <span class='self'>self</span>.<span class='ident'>as_mut_slice</span>();
+        }
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>from</span>;
         <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>to</span>;
 
