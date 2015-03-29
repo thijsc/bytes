@@ -633,11 +633,12 @@
 <span id="591">591</span>
 <span id="592">592</span>
 <span id="593">593</span>
+<span id="594">594</span>
 </pre><pre class='rust '>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>crate_name</span> <span class='op'>=</span> <span class='string'>&quot;bytes&quot;</span>]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>unstable</span>]</span>
 
-<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>alloc</span>, <span class='ident'>convert</span>, <span class='ident'>core</span>, <span class='ident'>unsafe_no_drop_flag</span>)]</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>alloc</span>, <span class='ident'>convert</span>, <span class='ident'>core</span>)]</span>
 
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>byte_buf</span>::{<span class='ident'>ByteBuf</span>, <span class='ident'>ROByteBuf</span>, <span class='ident'>MutByteBuf</span>};
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>byte_str</span>::{<span class='ident'>SeqByteStr</span>, <span class='ident'>SmallByteStr</span>, <span class='ident'>SmallByteStrBuf</span>};
@@ -647,6 +648,7 @@
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>slice</span>::{<span class='ident'>SliceBuf</span>, <span class='ident'>MutSliceBuf</span>};
 
 <span class='kw'>use</span> <span class='ident'>std</span>::{<span class='ident'>cmp</span>, <span class='ident'>fmt</span>, <span class='ident'>io</span>, <span class='ident'>ops</span>, <span class='ident'>ptr</span>, <span class='ident'>u32</span>};
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>marker</span>::<span class='ident'>Reflect</span>;
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>core</span>;
 
@@ -834,7 +836,7 @@
 <span class='doccomment'>/// An immutable sequence of bytes. Operations will not mutate the original</span>
 <span class='doccomment'>/// value. Since only immutable access is permitted, operations do not require</span>
 <span class='doccomment'>/// copying (though, sometimes copying will happen as an optimization).</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ByteStr</span> : <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Sized</span> <span class='op'>+</span> <span class='ident'>Send</span> <span class='op'>+</span> <span class='ident'>Sync</span> <span class='op'>+</span> <span class='ident'>ToBytes</span> <span class='op'>+</span> <span class='ident'>ops</span>::<span class='ident'>Index</span><span class='op'>&lt;</span><span class='ident'>usize</span>, <span class='ident'>Output</span><span class='op'>=</span><span class='ident'>u8</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ByteStr</span> : <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Sized</span> <span class='op'>+</span> <span class='ident'>Send</span> <span class='op'>+</span> <span class='ident'>Sync</span> <span class='op'>+</span> <span class='ident'>Reflect</span> <span class='op'>+</span> <span class='ident'>ToBytes</span> <span class='op'>+</span> <span class='ident'>ops</span>::<span class='ident'>Index</span><span class='op'>&lt;</span><span class='ident'>usize</span>, <span class='ident'>Output</span><span class='op'>=</span><span class='ident'>u8</span><span class='op'>&gt;</span> <span class='op'>+</span> <span class='lifetime'>&#39;static</span> {
 
     <span class='comment'>// Until HKT lands, the buf must be bound by &#39;static</span>
     <span class='kw'>type</span> <span class='ident'>Buf</span>: <span class='ident'>Buf</span><span class='op'>+</span><span class='lifetime'>&#39;static</span>;
@@ -1018,7 +1020,7 @@
 
         <span class='kw'>unsafe</span> {
             {
-                <span class='kw'>let</span> <span class='ident'>dst</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>as_mut_slice</span>();
+                <span class='kw'>let</span> <span class='ident'>dst</span> <span class='op'>=</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>[..];
                 <span class='kw'>let</span> <span class='ident'>cnt</span> <span class='op'>=</span> <span class='ident'>buf</span>.<span class='ident'>read_slice</span>(<span class='ident'>slice</span>::<span class='ident'>from_raw_parts_mut</span>(<span class='ident'>dst</span>.<span class='ident'>as_mut_ptr</span>(), <span class='ident'>rem</span>));
 
                 <span class='macro'>debug_assert</span><span class='macro'>!</span>(<span class='ident'>cnt</span> <span class='op'>==</span> <span class='ident'>rem</span>);
