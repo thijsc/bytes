@@ -227,10 +227,36 @@
 <span id="185">185</span>
 <span id="186">186</span>
 <span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> <span class='ident'>super</span>::{<span class='ident'>Buf</span>, <span class='ident'>MutBuf</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::{<span class='ident'>cmp</span>, <span class='ident'>fmt</span>, <span class='ident'>mem</span>, <span class='ident'>ptr</span>, <span class='ident'>slice</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>rt</span>::<span class='ident'>heap</span>;
+<span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>io</span>;
 
 <span class='doccomment'>/// Buf backed by a continous chunk of memory. Maintains a read cursor and a</span>
 <span class='doccomment'>/// write cursor. When reads and writes reach the end of the allocated buffer,</span>
@@ -411,6 +437,30 @@
         }
 
         <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>.<span class='ident'>as_mut_slice</span>()[<span class='ident'>from</span>..<span class='ident'>to</span>]
+    }
+}
+
+<span class='kw'>impl</span> <span class='ident'>io</span>::<span class='ident'>Read</span> <span class='kw'>for</span> <span class='ident'>RingBuf</span> {
+    <span class='kw'>fn</span> <span class='ident'>read</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>buf</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> [<span class='ident'>u8</span>]) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span> {
+        <span class='kw'>if</span> <span class='op'>!</span><span class='ident'>MutBuf</span>::<span class='ident'>has_remaining</span>(<span class='self'>self</span>) {
+            <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='number'>0</span>);
+        }
+
+        <span class='prelude-val'>Ok</span>(<span class='self'>self</span>.<span class='ident'>read_slice</span>(<span class='ident'>buf</span>))
+    }
+}
+
+<span class='kw'>impl</span> <span class='ident'>io</span>::<span class='ident'>Write</span> <span class='kw'>for</span> <span class='ident'>RingBuf</span> {
+    <span class='kw'>fn</span> <span class='ident'>write</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>buf</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='ident'>usize</span><span class='op'>&gt;</span> {
+        <span class='kw'>if</span> <span class='op'>!</span><span class='ident'>Buf</span>::<span class='ident'>has_remaining</span>(<span class='self'>self</span>) {
+            <span class='kw'>return</span> <span class='prelude-val'>Ok</span>(<span class='number'>0</span>);
+        }
+
+        <span class='prelude-val'>Ok</span>(<span class='self'>self</span>.<span class='ident'>write_slice</span>(<span class='ident'>buf</span>))
+    }
+
+    <span class='kw'>fn</span> <span class='ident'>flush</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>io</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
+        <span class='prelude-val'>Ok</span>(())
     }
 }
 
