@@ -634,6 +634,8 @@
 <span id="592">592</span>
 <span id="593">593</span>
 <span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
 </pre><pre class='rust '>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>crate_name</span> <span class='op'>=</span> <span class='string'>&quot;bytes&quot;</span>]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>unstable</span>]</span>
@@ -714,7 +716,7 @@
                 <span class='ident'>cnt</span> <span class='op'>=</span> <span class='ident'>cmp</span>::<span class='ident'>min</span>(<span class='ident'>src</span>.<span class='ident'>len</span>(), <span class='ident'>len</span> <span class='op'>-</span> <span class='ident'>off</span>);
 
                 <span class='ident'>ptr</span>::<span class='ident'>copy_nonoverlapping</span>(
-                    <span class='ident'>dst</span>[<span class='ident'>off</span>..].<span class='ident'>as_mut_ptr</span>(), <span class='ident'>src</span>.<span class='ident'>as_ptr</span>(), <span class='ident'>cnt</span>);
+                    <span class='ident'>src</span>.<span class='ident'>as_ptr</span>(), <span class='ident'>dst</span>[<span class='ident'>off</span>..].<span class='ident'>as_mut_ptr</span>(), <span class='ident'>cnt</span>);
 
                 <span class='ident'>off</span> <span class='op'>+=</span> <span class='ident'>src</span>.<span class='ident'>len</span>();
             }
@@ -796,7 +798,9 @@
                 <span class='ident'>cnt</span> <span class='op'>=</span> <span class='ident'>cmp</span>::<span class='ident'>min</span>(<span class='ident'>dst</span>.<span class='ident'>len</span>(), <span class='ident'>len</span> <span class='op'>-</span> <span class='ident'>off</span>);
 
                 <span class='ident'>ptr</span>::<span class='ident'>copy_nonoverlapping</span>(
-                    <span class='ident'>dst</span>.<span class='ident'>as_mut_ptr</span>(), <span class='ident'>src</span>[<span class='ident'>off</span>..].<span class='ident'>as_ptr</span>(), <span class='ident'>cnt</span>);
+                    <span class='ident'>src</span>[<span class='ident'>off</span>..].<span class='ident'>as_ptr</span>(),
+                    <span class='ident'>dst</span>.<span class='ident'>as_mut_ptr</span>(),
+                    <span class='ident'>cnt</span>);
 
                 <span class='ident'>off</span> <span class='op'>+=</span> <span class='ident'>cnt</span>;
             }
@@ -1066,8 +1070,8 @@
 
                 <span class='kw'>unsafe</span> {
                     <span class='ident'>ptr</span>::<span class='ident'>copy_nonoverlapping</span>(
-                        <span class='ident'>d</span>.<span class='ident'>as_mut_ptr</span>(),
                         <span class='ident'>s</span>.<span class='ident'>as_ptr</span>(),
+                        <span class='ident'>d</span>.<span class='ident'>as_mut_ptr</span>(),
                         <span class='ident'>l</span>);
                 }
             }
