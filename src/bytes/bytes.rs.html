@@ -314,6 +314,7 @@
 <span id="272">272</span>
 <span id="273">273</span>
 <span id="274">274</span>
+<span id="275">275</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> {<span class='ident'>ByteBuf</span>, <span class='ident'>SmallByteStr</span>};
 <span class='kw'>use</span> <span class='ident'>traits</span>::{<span class='ident'>Buf</span>, <span class='ident'>ByteStr</span>, <span class='ident'>ToBytes</span>};
@@ -575,6 +576,7 @@
 
 <span class='comment'>// TODO: Figure out how to not depend on the memory layout of trait objects</span>
 <span class='comment'>// Blocked: rust-lang/rust#24050</span>
+<span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='kw'>struct</span> <span class='ident'>TraitObject</span> {
     <span class='ident'>data</span>: <span class='op'>*</span><span class='kw-2'>mut</span> (),
     <span class='ident'>vtable</span>: <span class='op'>*</span><span class='kw-2'>mut</span> (),
