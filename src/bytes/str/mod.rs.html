@@ -225,14 +225,18 @@
 <span id="183">183</span>
 <span id="184">184</span>
 <span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
 </pre><pre class='rust '>
-<span class='kw'>mod</span> <span class='ident'>byte_str</span>;
 <span class='kw'>mod</span> <span class='ident'>bytes</span>;
 <span class='kw'>mod</span> <span class='ident'>rope</span>;
+<span class='kw'>mod</span> <span class='ident'>seq</span>;
+<span class='kw'>mod</span> <span class='ident'>small</span>;
 
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>byte_str</span>::{<span class='ident'>SeqByteStr</span>, <span class='ident'>SmallByteStr</span>, <span class='ident'>SmallByteStrBuf</span>};
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>bytes</span>::<span class='ident'>Bytes</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>rope</span>::{<span class='ident'>Rope</span>, <span class='ident'>RopeBuf</span>};
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>seq</span>::<span class='ident'>SeqByteStr</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>small</span>::{<span class='ident'>SmallByteStr</span>, <span class='ident'>SmallByteStrBuf</span>};
 
 <span class='kw'>use</span> {<span class='ident'>Buf</span>};
 <span class='kw'>use</span> <span class='ident'>std</span>::{<span class='ident'>cmp</span>, <span class='ident'>fmt</span>, <span class='ident'>ops</span>};

@@ -68,8 +68,7 @@ length between 0 and <code>Buf::remaining()</code>.</p>
 the number of bytes read.</p>
 
 <p>If there are fewer bytes remaining than is needed to satisfy the
-request (aka <code>dst.len()</code> &gt; self.remaining()<code>), then
-</code>Err(BufError::Overflow)` is returned.</p>
+request (aka <code>dst.len()</code> &gt; self.remaining()<code>), then</code>Err(BufError::Overflow)` is returned.</p>
 <pre id='rust-example-rendered' class='rust '>
 <span class='kw'>use</span> <span class='ident'>bytes</span>::{<span class='ident'>MutSliceBuf</span>, <span class='ident'>Buf</span>, <span class='ident'>MutBuf</span>};
 

@@ -68,8 +68,7 @@ between 0 and <code>Buf::remaining()</code>.</p>
 the number of bytes read.</p>
 
 <p>If there are fewer bytes remaining than is needed to satisfy the
-request (aka <code>dst.len()</code> &gt; self.remaining()<code>), then
-</code>Err(BufError::Overflow)` is returned.</p>
+request (aka <code>dst.len()</code> &gt; self.remaining()<code>), then</code>Err(BufError::Overflow)` is returned.</p>
 <pre id='rust-example-rendered' class='rust '>
 <span class='kw'>use</span> <span class='ident'>bytes</span>::{<span class='ident'>SliceBuf</span>, <span class='ident'>Buf</span>};
 
@@ -89,8 +88,8 @@ request (aka <code>dst.len()</code> &gt; self.remaining()<code>), then
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for RingBuf</code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl&lt;'a&gt; <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for SliceBuf&lt;'a&gt;</code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for <a class='struct' href='http://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> + 'static&gt;</code></li>
-<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for SmallByteStrBuf</code></li>
 <li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for RopeBuf</code></li>
+<li><a class='stability Unmarked' title='No stability level'></a><code>impl <a class='trait' href='../bytes/trait.Buf.html' title='bytes::Buf'>Buf</a> for SmallByteStrBuf</code></li>
 </ul><script type="text/javascript" async
                               src="../implementors/bytes/trait.Buf.js">
                       </script></section>
