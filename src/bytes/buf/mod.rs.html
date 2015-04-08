@@ -398,12 +398,6 @@
 <span id="356">356</span>
 <span id="357">357</span>
 <span id="358">358</span>
-<span id="359">359</span>
-<span id="360">360</span>
-<span id="361">361</span>
-<span id="362">362</span>
-<span id="363">363</span>
-<span id="364">364</span>
 </pre><pre class='rust '>
 <span class='kw'>mod</span> <span class='ident'>byte</span>;
 <span class='kw'>mod</span> <span class='ident'>ring</span>;
@@ -438,10 +432,7 @@
 
     <span class='doccomment'>/// Read bytes from the `Buf` into the given slice and advance the cursor by</span>
     <span class='doccomment'>/// the number of bytes read.</span>
-    <span class='doccomment'>///</span>
-    <span class='doccomment'>/// If there are fewer bytes remaining than is needed to satisfy the</span>
-    <span class='doccomment'>/// request (aka `dst.len()` &gt; self.remaining()`), then</span>
-    <span class='doccomment'>/// `Err(BufError::Overflow)` is returned.</span>
+    <span class='doccomment'>/// Returns the number of bytes read.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// ```</span>
     <span class='doccomment'>/// use bytes::{SliceBuf, Buf};</span>
@@ -499,27 +490,24 @@
 <span class='doccomment'>/// A trait for values that provide sequential write access to bytes.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>MutBuf</span> : <span class='ident'>Sized</span> {
 
-    <span class='doccomment'>/// Returns the number of bytes that can be accessed from the Buf</span>
+    <span class='doccomment'>/// Returns the number of bytes that can be written to the MutBuf</span>
     <span class='kw'>fn</span> <span class='ident'>remaining</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>usize</span>;
 
-    <span class='doccomment'>/// Advance the internal cursor of the Buf</span>
+    <span class='doccomment'>/// Advance the internal cursor of the MutBuf</span>
     <span class='kw'>fn</span> <span class='ident'>advance</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>cnt</span>: <span class='ident'>usize</span>);
 
-    <span class='doccomment'>/// Returns true if there are any more bytes to consume</span>
+    <span class='doccomment'>/// Returns true iff there is any more space for bytes to be written</span>
     <span class='kw'>fn</span> <span class='ident'>has_remaining</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span> {
         <span class='self'>self</span>.<span class='ident'>remaining</span>() <span class='op'>&gt;</span> <span class='number'>0</span>
     }
 
-    <span class='doccomment'>/// Returns a mutable slice starting at the current Buf position and of</span>
-    <span class='doccomment'>/// length between 0 and `Buf::remaining()`.</span>
+    <span class='doccomment'>/// Returns a mutable slice starting at the current MutBuf position and of</span>
+    <span class='doccomment'>/// length between 0 and `MutBuf::remaining()`.</span>
     <span class='kw'>fn</span> <span class='ident'>mut_bytes</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> [<span class='ident'>u8</span>];
 
-    <span class='doccomment'>/// Read bytes from this Buf into the given slice and advance the cursor by</span>
-    <span class='doccomment'>/// the number of bytes read.</span>
-    <span class='doccomment'>///</span>
-    <span class='doccomment'>/// If there are fewer bytes remaining than is needed to satisfy the</span>
-    <span class='doccomment'>/// request (aka `dst.len()` &gt; self.remaining()`), then</span>
-    <span class='doccomment'>/// `Err(BufError::Overflow)` is returned.</span>
+    <span class='doccomment'>/// Write bytes from the given slice into the `MutBuf` and advance the</span>
+    <span class='doccomment'>/// cursor by the number of bytes written.</span>
+    <span class='doccomment'>/// Returns the number of bytes written.</span>
     <span class='doccomment'>///</span>
     <span class='doccomment'>/// ```</span>
     <span class='doccomment'>/// use bytes::{MutSliceBuf, Buf, MutBuf};</span>
