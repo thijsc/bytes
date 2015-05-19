@@ -1,0 +1,1 @@
+{"name":"bytes","counts":{"deprecated":0,"unstable":0,"stable":7,"unmarked":62},"submodules":[{"name":"alloc","counts":{"deprecated":0,"unstable":0,"stable":4,"unmarked":21},"submodules":[]},{"name":"traits","counts":{"deprecated":0,"unstable":0,"stable":0,"unmarked":1},"submodules":[]}]}
