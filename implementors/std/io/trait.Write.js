@@ -1,5 +1,5 @@
 (function() {var implementors = {};
-implementors['bytes'] = ["<a class='stability Stable' title='Stable'></a>impl <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a> for RingBuf","<a class='stability Stable' title='Stable'></a>impl <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a> for MutByteBuf",];
+implementors['bytes'] = ["impl <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a> for RingBuf","impl <a class='trait' href='http://doc.rust-lang.org/nightly/std/io/trait.Write.html' title='std::io::Write'>Write</a> for MutByteBuf",];
 
             if (window.register_implementors) {
                 window.register_implementors(implementors);
