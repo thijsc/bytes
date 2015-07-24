@@ -366,6 +366,9 @@
 <span id="324">324</span>
 <span id="325">325</span>
 <span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
 </pre><pre class='rust '>
 <span class='kw'>use</span> {<span class='ident'>alloc</span>, <span class='ident'>Bytes</span>, <span class='ident'>SeqByteStr</span>, <span class='ident'>MAX_CAPACITY</span>};
 <span class='kw'>use</span> <span class='ident'>traits</span>::{<span class='ident'>Buf</span>, <span class='ident'>MutBuf</span>, <span class='ident'>MutBufExt</span>, <span class='ident'>ByteStr</span>};
@@ -378,6 +381,9 @@
  */</span>
 
 <span class='doccomment'>/// A `Buf` backed by a contiguous region of memory.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// This `Buf` is better suited for cases where there is a clear delineation</span>
+<span class='doccomment'>/// between reading and writing.</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>ByteBuf</span> {
     <span class='ident'>mem</span>: <span class='ident'>alloc</span>::<span class='ident'>MemRef</span>,
     <span class='ident'>cap</span>: <span class='ident'>u32</span>,
